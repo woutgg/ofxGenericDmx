@@ -1,0 +1,38 @@
+USAGE
+This addon requires libftdi.
+On OSX, an easy way to install the library is by using macports.
+After macports has been installed, issue the following command to install
+libftdi as a universal library: 'sudo port install libftdi +universal'.
+A similar process will probably work on linux as well, although the two paths
+mentioned below might need to be changed.
+
+The library path is /opt/local/lib/libftdi.dylib. This has already been added to
+the addon.
+
+What you need to do yourself is adding the include path.
+In the Project menu, choose 'Edit project settings' and select the Build tab.
+Enter 'User Header Search Paths' (partially) in the search field in order to
+locate that property. Double click it and add the path '/opt/local/include'.
+
+The addon should now compile just fine.
+
+Note: if the addon compiles, appears to open a device but does not send any data,
+it is likely you have the Ftdi VCP installed. You can determine this by checking
+if /dev/ttyUsbSerial exists. Arduino software also installs this driver.
+A temporary solution is to uninstall the driver (see Ftdi's installation guide).
+
+
+NOTES
+- Make sure to install libusb, libusb-compat and libftdi as universal libraries.
+  (command: 'sudo port install libftdi +universal')
+- libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in
+  this addon.
+- DmxRawDevice is untested.
+- by lack of RDM-capable devices to test with, such features have not been added.
+
+
+REFERENCES
+- http://forum.openframeworks.cc/index.php?&topic=3938.0
+- http://forum.openframeworks.cc/index.php?&topic=928.0
+
+TODO => see TODO file
