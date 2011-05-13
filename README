@@ -1,32 +1,28 @@
 USAGE
-This addon requires libftdi.
-On OSX, an easy way to install the library is by using macports.
-After macports has been installed, issue the following command to install
-libftdi as a universal library: 'sudo port install libftdi +universal'.
-A similar process will probably work on linux as well, although the two paths
-mentioned below might need to be changed.
+This addon requires libftdi, libusb-compat and libusb-1.0.
+For OSX, these have been included in the addon so you should not need any
+external files. However, you might need to add the three relevant library paths
+to your project configuration.
 
-The library path is /opt/local/lib/libftdi.dylib. This has already been added to
-the addon.
+It is also possible to use macports or a similar ports manager; in that case, it
+is important to create universal libraries. Besides you will have to add the
+proper include paths.
 
-What you need to do yourself is adding the include path.
-In the Project menu, choose 'Edit project settings' and select the Build tab.
-Enter 'User Header Search Paths' (partially) in the search field in order to
-locate that property. Double click it and add the path '/opt/local/include'.
-
-The addon should now compile just fine.
-
-Note: if the addon compiles, appears to open a device but does not send any data,
-it is likely you have the Ftdi VCP installed. You can determine this by checking
-if /dev/ttyUsbSerial exists. Arduino software also installs this driver.
-A temporary solution is to uninstall the driver (see Ftdi's installation guide).
+The addon should work on Linux and Windows as well since all required libraries
+are cross-platform.
 
 
 NOTES
+- (OSX specific) If the addon compiles, appears to open a device but does not
+  send any data, it is likely you have the Ftdi VCP driver installed. This can
+	be determined by checking if /dev/ttyUsbSerial exists.
+	Note that the Arduino software also installs this driver. A temporary solution
+	is to uninstall the driver (see Ftdi's installation guide:
+	http://www.ftdichip.com/Support/Documents/InstallGuides.htm).
 - Make sure to install libusb, libusb-compat and libftdi as universal libraries.
-  (command: 'sudo port install libftdi +universal')
+  (e.g., OSX macports command would be: 'sudo port install libftdi +universal')
 - libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in
-  this addon.
+  this addon to avoid additional dependencies.
 - DmxRawDevice is untested.
 - by lack of RDM-capable devices to test with, such features have not been added.
 
