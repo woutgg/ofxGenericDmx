@@ -2,6 +2,8 @@
  * //openFrameworks DMX Usb Pro addon.
  * //Copyright 2010, W. Reckman. All rights reserved.
  */
+#include <iostream>
+#include <iomanip>
 #include <unistd.h> /* for usleep() */
 #include <typeinfo>
 #include "DmxDevice.h"
@@ -19,11 +21,29 @@ DmxDevice::DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE ty
 	return dev;
 }
 
-DmxDevice* ofxGenericDmx::openFirstDevice( bool usbProOnly )
+/*
+ * NOTE: all log messages are logged to stdout, even error messages, this is because
+ * openFrameworks (v0062) also behaves this way.
+ */
+DmxDevice* ofxGenericDmx::openFirstDevice( bool usbProOnly, bool verbose )
 {
 	DmxDevice* d = 0;
 	int listIdx = -1;
+	bool devIsUsbPro = false;
 	const FtdiDevice::vec_deviceInfo* devs = getDeviceList();
+	const int devCount = devs->size();
+	
+	if ( verbose ) {
+		if ( devCount == 0 ) {
+			std::cout << "----- ofxGenericDmx: no FTDI devices were found, there is no spoon" << std::endl;
+		} else if ( usbProOnly ) {
+			std::cout << "----- ofxGenericDmx: looking for Enttec DMX USB Pro device to open (" << devCount << " FTDI devices to choose from)" << std::endl;
+		} else {
+			std::cout << "----- ofxGenericDmx: looking for DMX device to open (" << devCount << " FTDI devices to choose from)" << std::endl;
+		}
+	}
+	
+	if ( devCount == 0 ) return 0; //NOTE: return if there are no devices to consider
 	
 	FtdiDevice::vec_deviceInfo::const_iterator it;
 	for ( it = devs->begin(); it != devs->end(); ++it ) {
@@ -34,19 +54,63 @@ DmxDevice* ofxGenericDmx::openFirstDevice( bool usbProOnly )
 																				 std::strlen( DmxUsbProDevice::USB_DESCRIPTION ) ) == 0 ) {
 			d = createDevice( DmxDevice::DMX_DEVICE_ENTTECPRO );
 			listIdx = it - devs->begin();
+			devIsUsbPro = true;
 			break;
 		} else if ( ! usbProOnly ) {
 			d = createDevice( DmxDevice::DMX_DEVICE_RAW );
 			listIdx = it - devs->begin();
+			devIsUsbPro = false;
 			break;
 		}
 	}
 	
 	if ( listIdx >= 0 ) {
 		bool r = d->open( 0, 0, listIdx );
-		if ( ! r ) {
+		if ( r ) {
+			if ( verbose ) {
+				const std::string devDesc = devIsUsbPro ? "Enttec DMX Usb pro" : "raw device";
+				const FtdiDevice::usbInformation* usbInfo = d->getUsbInformation();
+				
+				if ( usbInfo ) {
+					std::cout << "-- successfully opened DMX device (" << devDesc << ") with device index " << listIdx << std::endl;
+					std::cout << "--   USB device information: manufacturer='" << usbInfo->manufacturer
+							<< "', description='" << usbInfo->description << "', serial='" << usbInfo->serial << "'" << std::endl;
+				} else {
+					std::cout << "-- successfully opened DMX device (" << devDesc << ") with device index "
+							<< listIdx << " (could not retrieve USB details)" << std::endl;
+				}
+				
+				if ( devIsUsbPro ) {
+					const DmxUsbProDevice* usbProDev = toUsbPro( d );
+					const DmxUsbProDevice::widgetParameters* params = usbProDev->getWidgetParameters();
+					if ( params != 0 ) {
+						std::cout << "--   Enttec device information: firmware version=" << params->firmwareVersionMajor
+								<< "." << params->firmwareVersionMinor << ", break time=" << params->breakTime
+								<< ", MaB time=" << params->mabTime << ", refresh rate=" << params->refreshRate << std::endl;
+					} else {
+						std::cout << "Could not fetch Enttec device information." << std::endl;
+					}
+					
+					const uint32_t* serNum = usbProDev->getSerialNumber();
+					if ( serNum != 0 && *serNum != DmxUsbProDevice::SN_NOT_PROGRAMMED ) {
+						std::cout << "--   Enttec device serial number: " << std::setw( 8 ) << std::setfill( '0' ) << *serNum << std::endl;
+					} else {
+						std::cout << "--   Enttec device serial number could not be read, or does not exist" << std::endl;
+					}
+				}
+				
+				//log: usb info
+				//if device is usbpro:log widgetparms & serial number, if any
+			}
+		} else {
+			if ( verbose ) {
+				std::cout << "-- failed to open device with index " << listIdx << " ('" << d->getLastError() << "')" << std::endl;
+			}
+			
 			delete d; d = 0;
 		}
+	} else if ( verbose ) {
+		std::cout << "-- no suitable DMX device was found" << std::endl;
 	}
 	
 	

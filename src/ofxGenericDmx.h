@@ -14,7 +14,7 @@ class DmxUsbProDevice::widgetParameters;
 class ofxGenericDmx {
 public:
 	static DmxDevice* createDevice( DmxDevice::DMX_DEVICE_TYPE type = DmxDevice::DMX_DEVICE_ENTTECPRO );
-	static DmxDevice* openFirstDevice( bool usbProOnly = true );
+	static DmxDevice* openFirstDevice( bool usbProOnly = true, bool verbose = true );
 	static const std::vector<struct FtdiDevice::deviceInfo>* getDeviceList();
 	
 	static const DmxUsbProDevice* toUsbPro( const DmxDevice* dev );
