@@ -88,7 +88,7 @@ DmxDevice* ofxGenericDmx::openFirstDevice( bool usbProOnly, bool verbose )
 								<< "." << params->firmwareVersionMinor << ", break time=" << params->breakTime
 								<< ", MaB time=" << params->mabTime << ", refresh rate=" << params->refreshRate << std::endl;
 					} else {
-						std::cout << "Could not fetch Enttec device information." << std::endl;
+						std::cout << "--   could not fetch Enttec device information." << std::endl;
 					}
 					
 					const uint32_t* serNum = usbProDev->getSerialNumber();
