@@ -1,15 +1,15 @@
 USAGE
 This addon requires libftdi, libusb-compat and libusb-1.0.
-For OSX, these have been included in the addon so you should not need any
-external files. However, you might need to add the three relevant library paths
-to your project configuration.
+For OSX and GNU/Linux, these have been included in the addon so you should not
+need any external files. However, you might need to add the relevant library
+paths to your project configuration.
 
-It is also possible to use macports or a similar ports manager; in that case, it
-is important to create universal libraries. Besides you will have to add the
-proper include paths.
+It is also possible to use macports or a similar ports manager; in that case,
+it is important to create universal libraries. Besides you will of course have
+to add the proper include paths.
 
-The addon should work on Linux and Windows as well since all required libraries
-are cross-platform.
+The addon should work on any platform supported by the required libraries, this
+includes Windows. However, some work needs to be done to get there.
 
 
 NOTES
@@ -19,8 +19,12 @@ NOTES
 	Note that the Arduino software also installs this driver. A temporary solution
 	is to uninstall the driver (see Ftdi's installation guide:
 	http://www.ftdichip.com/Support/Documents/InstallGuides.htm).
-- Make sure to install libusb, libusb-compat and libftdi as universal libraries.
-  (e.g., OSX macports command would be: 'sudo port install libftdi +universal')
+- Should you choose to install your own libraries, make sure to install them all
+  as universal libraries. (e.g., OSX macports command would be:
+	'sudo port install libftdi +universal')
+- While setting up a Code::Blocks project, the libraries will have to be added
+  to link against. Make sure they end up in the right order: first libftdi, then
+	libusb-compat and finally usb-1.0.
 - libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in
   this addon to avoid additional dependencies.
 - DmxRawDevice is untested.
