@@ -329,13 +329,14 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2200D41B13D08E4D00745B3D</string>
+										<string>2200D4DA13D5852C00745B3D</string>
 										<key>history</key>
 										<array>
 											<string>2200D36D13D0413D00745B3D</string>
 											<string>2200D3FB13D0832600745B3D</string>
-											<string>2200D40413D0856700745B3D</string>
-											<string>2200D40513D0856700745B3D</string>
+											<string>2200D4D713D5852C00745B3D</string>
+											<string>2200D4D813D5852C00745B3D</string>
+											<string>2200D4D913D5852C00745B3D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -393,9 +394,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2200D24313D034D100745B3D</string>
+				<string>2200D4DB13D5852C00745B3D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2200D24413D034D100745B3D</string>
+				<string>2200D4DC13D5852C00745B3D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -533,13 +534,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2200D41C13D08E4D00745B3D</string>
-		<string>2200D35A13D03C5200745B3D</string>
-		<string>2200D35B13D03C5200745B3D</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>228610BB13CDA71300CC436C</string>
-		<string>/Users/tim/Blendid/_oF/of_007_Git/apps/blendid/ofxGenericDmx_EnttecDmxUsbProExample/ofxGenericDmx_EnttecDmxUsbProExample.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/tim/Blendid/_oF/of_007_Git/addons/ofxGenericDmx/ofxGenericDmx_EnttecDmxUsbProExample/ofxGenericDmx_EnttecDmxUsbProExample.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 133 1211 644 0 0 1280 778 </string>
@@ -580,8 +577,6 @@
 							<string>127pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -621,7 +616,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>228610BB13CDA71300CC436C</string>
-				<string>2200D24513D034D100745B3D</string>
+				<string>2200D4DD13D5852C00745B3D</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -665,8 +660,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {316, 198}}</string>
-											<string>{{316, 0}, {378, 198}}</string>
+											<string>{{0, 0}, {316, 201}}</string>
+											<string>{{316, 0}, {378, 201}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -681,8 +676,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {694, 198}}</string>
-											<string>{{0, 198}, {694, 183}}</string>
+											<string>{{0, 0}, {694, 201}}</string>
+											<string>{{0, 201}, {694, 180}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -715,7 +710,7 @@
 										<real>148</real>
 									</array>
 									<key>Frame</key>
-									<string>{{316, 0}, {378, 198}}</string>
+									<string>{{316, 0}, {378, 201}}</string>
 									<key>RubberWindowFrame</key>
 									<string>267 290 694 422 0 0 1280 778 </string>
 								</dict>
@@ -743,13 +738,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2200D27213D037AA00745B3D</string>
+				<string>2200D4DE13D5852C00745B3D</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2200D27313D037AA00745B3D</string>
-				<string>2200D27413D037AA00745B3D</string>
-				<string>2200D27513D037AA00745B3D</string>
-				<string>2200D27613D037AA00745B3D</string>
-				<string>2200D27713D037AA00745B3D</string>
+				<string>2200D4DF13D5852C00745B3D</string>
+				<string>2200D4E013D5852C00745B3D</string>
+				<string>2200D4E113D5852C00745B3D</string>
+				<string>2200D4E213D5852C00745B3D</string>
+				<string>2200D4E313D5852C00745B3D</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
