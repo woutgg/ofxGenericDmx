@@ -1,0 +1,19 @@
+TODO
+- Add v0.1 mark, copyright, credits to Chris, etc.
+- only tested on 10.6 & of0061 (and at least the libftdi in the d2xx driver does not work on 10.6 due to a libusb0.1 bug (which libftdi is linked against))
+- search oF forum to find all dmx addons and their mods in order to cover their collective support
+  (would probably mean adding serial/vcp support and maybe dmx512 support as well)
+- adapt for serial communication: create SerialHwChannel with subclasses VcpChannel and FtdiChannel(currently FtdiDevice)
+  then adapt DmxDevice and subclasses to use the interface instead of FtdiDevice/FtdiChannel
+- Maybe move subclasses to subdirectory (although ofxOsc, for instance, does not do so)
+- Test and adapt for windows (use d2xx? or libftdi + libusb-win32?)
+- Add proper documentation to code.
+- links to all references used (at least ftdi & enttec docs)
+- decide how to handle the start code (it's probably fine the way it is)
+
+linux C::B project setup:
+ -add files to project
+ -add ftdi usb and usb-1.0 to libraries in linker settings (in that order!)
+ -add paths to all three library directories in linker tab of search directories
+ -there might be a more elegant/practical way
+ -maybe just add an example including working codeblocks project for linux and windows as well as an xcode project
