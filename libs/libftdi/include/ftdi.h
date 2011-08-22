@@ -18,7 +18,8 @@
 #define __libftdi_h__
 
 /*#include <libusb.h>*/
-#include <usb.h>
+//#include <usb.h>
+#include <lusb0_usb.h>
 
 #define FTDI_DEFAULT_EEPROM_SIZE 128
 
