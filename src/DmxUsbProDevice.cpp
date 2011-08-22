@@ -10,6 +10,12 @@
  *   any more are always read out as 0xff. strangely enough it did work before.
  *   Where is the bug?
  */
+#ifdef _WIN32
+# include <windows.h>
+# include <winbase.h>
+#define usleep( usecs ) Sleep( usecs / 1000 )
+#endif
+
 #include <assert.h>
 #include <cstring>
 #include <iostream> /* TEMP: for user configuration bug warnings */

@@ -4,6 +4,11 @@
  * - (open) add variant wrapping ftdi_usb_open_string
  * - (getDeviceList) generate warning if fetchUsbInformation() returns null?
  */
+#ifdef _WIN32
+# include <assert.h>
+# include "timeval-macros.h"
+#endif
+
 #include <unistd.h> /* for usleep() */
 #include <sys/time.h> /* for gettimeofday and related macros */
 #include "FtdiDevice.h"
