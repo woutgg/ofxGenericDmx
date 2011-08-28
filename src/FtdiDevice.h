@@ -79,7 +79,7 @@ public:
 		//NOTE: no destructor present since ownership of usbInfo is taken over by creator of struct
 		
 	private:
-		//NOTE: Apart from FtdiDevice, no classes have access to ftdiDevice.
+		//NOTE: Apart from FtdiDevice, no classes have access to the ftdiDevice struct.
 		struct usb_device* ftdiDevice;
 		
 		friend class FtdiDevice;
@@ -101,6 +101,13 @@ public:
 												 FTDI_PARITY_TYPE parity, FTDI_BREAK_TYPE breakType = BRK_OFF ) const;
 	int setFlowControl( FTDI_FLOWCTL_TYPE flowCtl ) const;
 	
+	int purgeBuffers( int bufType = RX_TX_BUFFER ) const;
+	int reset() const;
+	
+	int setBreak( FTDI_BREAK_TYPE breakType ) const;
+	int setDtr( bool dtrEnabled ) const;
+	int setRts( bool rtsEnabled ) const;
+	
 	bool isOpen() const;
 	const char* getLastError() const;
 	const struct usbInformation* getUsbInformation() const;
@@ -108,11 +115,10 @@ public:
 	int readData( const unsigned char* data, int length, int timeout = 0 ) const;
 	int writeData( const unsigned char* data, int length ) const;
 	
+	/* static functions */
+	
 	static const vec_deviceInfo* getDeviceList( ftdi_context* c = 0 );
 	static const void freeDeviceList();
-	
-	int purgeBuffers( int bufType = RX_TX_BUFFER ) const;
-	int reset() const;
 	
 private:
 	static const int USB_VENDOR_ID;
@@ -129,6 +135,11 @@ private:
 	struct ftdi_context* context_;
 	const struct usbInformation* usbInfo_;
 	mutable bool hasFtdiError_;
+	
+	mutable FTDI_DATABITS_TYPE dataBits_;
+	mutable FTDI_STOPBITS_TYPE stopBits_;
+	mutable FTDI_PARITY_TYPE parity_;
+	mutable FTDI_BREAK_TYPE breakType_;	
 };
 
 #endif /* ! FTDI_DEVICE_H */

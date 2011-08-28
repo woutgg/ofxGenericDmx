@@ -20,7 +20,8 @@ ftdi_device_list* FtdiDevice::s_ftdiDeviceList = 0;
 
 
 FtdiDevice::FtdiDevice()
-: context_( 0 ), usbInfo_( 0 ), hasFtdiError_( false )
+: context_( 0 ), usbInfo_( 0 ), hasFtdiError_( false ), dataBits_( DBITS_8 ),
+  stopBits_( SBITS_2 ), parity_( PAR_NONE ), breakType_( BRK_OFF )
 {}
 
 FtdiDevice::~FtdiDevice()
@@ -93,8 +94,10 @@ bool FtdiDevice::open( const char* description, const char* serial, int index )
 	}
 	
 	if ( success ) {
-		purgeBuffers();
 		reset();
+		//NOTE: this call is a bit ugly but necessary to ensure the cache values represent actual settings.
+		setLineProperties( dataBits_, stopBits_, parity_, breakType_ );
+		purgeBuffers();
 	}
 	
 	return success;
@@ -135,9 +138,14 @@ int FtdiDevice::setLineProperties( FTDI_DATABITS_TYPE dataBits, FTDI_STOPBITS_TY
 											 FTDI_PARITY_TYPE parity, FTDI_BREAK_TYPE breakType ) const
 {
 	if ( context_ == 0 ) return RV_DEVICE_NOT_OPEN;
+	
+	//NOTE: cache the settings to allow break to be configured separately through setBreak().
+	dataBits_ = dataBits; stopBits_ = stopBits; parity_ = parity; breakType_ = breakType;
+	
 	int r = ftdi_set_line_property2( context_, (ftdi_bits_type)dataBits,
 																	(ftdi_stopbits_type)stopBits, (ftdi_parity_type)parity,
 																	(ftdi_break_type)breakType );
+	
 	return ( r < 0 ) ? false : true;
 }
 
@@ -146,6 +154,42 @@ int FtdiDevice::setFlowControl( FTDI_FLOWCTL_TYPE flowCtl ) const
 	if ( context_ == 0 ) return RV_DEVICE_NOT_OPEN;
 	int r = ftdi_setflowctrl( context_, flowCtl );
 	return ( r < 0 ) ? false : true;
+}
+
+int FtdiDevice::purgeBuffers( int bufType ) const
+{
+	if ( ! isOpen() ) return RV_DEVICE_NOT_OPEN;
+	
+	int rv;
+	switch ( bufType ) {
+		case RX_BUFFER: rv = ftdi_usb_purge_rx_buffer( context_ ); break;
+		case TX_BUFFER: rv = ftdi_usb_purge_tx_buffer( context_ ); break;
+		case RX_TX_BUFFER: rv = ftdi_usb_purge_buffers( context_ ); break;
+		default: assert( false ); rv = 0; break; //illegal argument given
+	}
+	
+	//if ( rv < 0 ) fprintf( stderr, "purgeBuffers: purging failed (%i)\n", rv ); //LOG
+	
+	return rv;
+}
+
+int FtdiDevice::reset() const
+{
+	return ( context_ != 0 ) ? ftdi_usb_reset( context_ ) : 0;
+}
+
+int FtdiDevice::setBreak( FTDI_BREAK_TYPE breakType ) const {
+	return setLineProperties( dataBits_, stopBits_, parity_, breakType );
+}
+
+int FtdiDevice::setDtr( bool dtrEnabled ) const {
+	if ( ! isOpen() ) return RV_DEVICE_NOT_OPEN;
+	return ftdi_setdtr( context_, dtrEnabled ? 1 : 0 );
+}
+
+int FtdiDevice::setRts( bool rtsEnabled ) const {
+	if ( ! isOpen() ) return RV_DEVICE_NOT_OPEN;
+	return ftdi_setrts( context_, rtsEnabled ? 1 : 0 );
 }
 
 
@@ -221,28 +265,6 @@ int FtdiDevice::writeData( const unsigned char* data, int length ) const
 	if ( ! isOpen() ) return RV_DEVICE_NOT_OPEN;
 	
 	return ftdi_write_data( context_, const_cast<unsigned char*>( data ), length );
-}
-
-int FtdiDevice::purgeBuffers( int bufType ) const
-{
-	if ( ! isOpen() ) return RV_DEVICE_NOT_OPEN;
-	
-	int rv;
-	switch ( bufType ) {
-		case RX_BUFFER: rv = ftdi_usb_purge_rx_buffer( context_ ); break;
-		case TX_BUFFER: rv = ftdi_usb_purge_tx_buffer( context_ ); break;
-		case RX_TX_BUFFER: rv = ftdi_usb_purge_buffers( context_ ); break;
-		default: assert( false ); rv = 0; break; //illegal argument given
-	}
-	
-	//if ( rv < 0 ) fprintf( stderr, "purgeBuffers: purging failed (%i)\n", rv ); //LOG
-	
-	return rv;
-}
-
-int FtdiDevice::reset() const
-{
-	return ( context_ != 0 ) ? ftdi_usb_reset( context_ ) : 0;
 }
 
 
