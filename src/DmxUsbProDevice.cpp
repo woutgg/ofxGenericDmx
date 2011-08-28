@@ -13,7 +13,7 @@
 #ifdef _WIN32
 # include <windows.h>
 # include <winbase.h>
-#define usleep( usecs ) Sleep( usecs / 1000 )
+#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
 #endif
 
 #include <assert.h>
