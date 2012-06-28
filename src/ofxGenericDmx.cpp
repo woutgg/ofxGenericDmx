@@ -9,7 +9,7 @@
 #include "DmxUsbProDevice.h"
 #include "ofxGenericDmx.h"
 
-DmxDevice::DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
+DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
 {
 	DmxDevice* dev = 0;
 	switch ( type ) {

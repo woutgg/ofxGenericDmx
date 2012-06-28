@@ -52,7 +52,7 @@ void testApp::update(){
 	//force first byte to zero (it is not a channel but DMX type info - start code)
 	dmxData_[0] = 0; 	
 	
-	if ( ! dmxInterface_->isOpen() ) {
+	if ( ! dmxInterface_ || ! dmxInterface_->isOpen() ) {
 		printf( "Not updating, enttec device is not open.");
 	}
 	else{
