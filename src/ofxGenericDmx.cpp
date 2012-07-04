@@ -2,14 +2,19 @@
  * //openFrameworks DMX Usb Pro addon.
  * //Copyright 2010, W. Reckman. All rights reserved.
  */
-#include <unistd.h> /* for usleep() */
+#ifdef _WIN32
+# include <windows.h>
+# include <winbase.h>
+#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+#endif
+
 #include <typeinfo>
 #include "DmxDevice.h"
 #include "DmxRawDevice.h"
 #include "DmxUsbProDevice.h"
 #include "ofxGenericDmx.h"
 
-DmxDevice::DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
+DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
 {
 	DmxDevice* dev = 0;
 	switch ( type ) {

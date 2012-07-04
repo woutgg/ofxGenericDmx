@@ -10,16 +10,21 @@
  *   any more are always read out as 0xff. strangely enough it did work before.
  *   Where is the bug?
  */
-#ifdef _WIN32
-# include <windows.h>
-# include <winbase.h>
-#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
-#endif
 
 #include <assert.h>
 #include <cstring>
 #include <iostream> /* TEMP: for user configuration bug warnings */
 #include <math.h> /* for lroundf() */
+
+#ifdef _WIN32
+# include <windows.h>
+# include <winbase.h>
+#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+
+inline long lroundf(float num) { return static_cast<long>(num> 0 ? num + 0.5f : ceilf(num - 0.5f)); }
+
+#endif
+
 #include "DmxDevice.h"
 #include "DmxUsbProDevice.h"
 
