@@ -5,7 +5,9 @@
 #ifdef _WIN32
 # include <windows.h>
 # include <winbase.h>
-#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+# define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+#else
+# include <unistd.h> /* for usleep() */
 #endif
 
 #include <typeinfo>

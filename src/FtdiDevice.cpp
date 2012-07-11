@@ -6,11 +6,14 @@
  */
 #ifdef _WIN32
 # include <assert.h>
+# include <time.h> /* for gettimeofday and related macros */
 # include "timeval-macros.h"
-#define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+# define usleep( usecs ) Sleep( ( usecs ) / 1000 )
+#else
+# include <unistd.h> /* for usleep() */
+# include <sys/time.h> /* for gettimeofday and related macros */
 #endif
 
-#include <time.h> /* for gettimeofday and related macros */
 #include "FtdiDevice.h"
 
 /* public constants */
