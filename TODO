@@ -9,6 +9,7 @@ TODO porting and branch integration
 - update README with new supported systems and include credits etc
 - make sure it's obvious the addon supports the DMX USB PRO (does the first line in README work?)
 - (check why this works) does libftdi on w32 really not use libusb-compat?? it doesn't seem to but it must, right?
+- follow guidelines here (http://ofxaddons.com/howto) as good as possible and optimize addon for the site
 
 
 
