@@ -17,13 +17,12 @@
 #ifndef __libftdi_h__
 #define __libftdi_h__
 
-/*#include <libusb.h>*/
 #include <usb.h>
 
 #define FTDI_DEFAULT_EEPROM_SIZE 128
 
 /** FTDI chip type */
-enum ftdi_chip_type { TYPE_AM=0, TYPE_BM=1, TYPE_2232C=2, TYPE_R=3, TYPE_2232H=4, TYPE_4232H=5 };
+enum ftdi_chip_type { TYPE_AM=0, TYPE_BM=1, TYPE_2232C=2, TYPE_R=3, TYPE_2232H=4, TYPE_4232H=5, TYPE_232H = 6 };
 /** Parity mode for ftdi_set_line_property() */
 enum ftdi_parity_type { NONE=0, ODD=1, EVEN=2, MARK=3, SPACE=4 };
 /** Number of stop bits for ftdi_set_line_property() */
@@ -57,6 +56,13 @@ enum ftdi_interface
     INTERFACE_D   = 4
 };
 
+/** Automatic loading / unloading of kernel modules */
+enum ftdi_module_detach_mode
+{
+    AUTO_DETACH_SIO_MODULE = 0,
+    DONT_DETACH_SIO_MODULE = 1
+};
+
 /* Shifting commands IN MPSSE Mode*/
 #define MPSSE_WRITE_NEG 0x01   /* Write TDI/DO on negative TCK/SK edge*/
 #define MPSSE_BITMODE   0x02   /* Write bits, not bytes */
@@ -78,6 +84,21 @@ enum ftdi_interface
 #define LOOPBACK_START 0x84
 #define LOOPBACK_END   0x85
 #define TCK_DIVISOR    0x86
+/* H Type specific commands */
+#define DIS_DIV_5       0x8a
+#define EN_DIV_5        0x8b
+#define EN_3_PHASE      0x8c
+#define DIS_3_PHASE     0x8d
+#define CLK_BITS        0x8e
+#define CLK_BYTES       0x8f
+#define CLK_WAIT_HIGH   0x94
+#define CLK_WAIT_LOW    0x95
+#define EN_ADAPTIVE     0x96
+#define DIS_ADAPTIVE    0x97
+#define CLK_BYTES_OR_HIGH 0x9c
+#define CLK_BYTES_OR_LOW  0x0d
+/*FT232H specific commands */
+#define DRIVE_OPEN_COLLECTOR 0x9e
 /* Value Low */
 /* Value HIGH */ /*rate is 12000000/((1+value)*2) */
 #define DIV_VALUE(rate) (rate > 6000000)?0:((6000000/rate -1) > 0xffff)? 0xffff: (6000000/rate -1)
@@ -217,6 +238,9 @@ struct ftdi_context
     char *async_usb_buffer;
     /** Number of URB-structures we can buffer */
     unsigned int async_usb_buffer_size;
+
+    /** Defines behavior in case a kernel module is already attached to the device */
+    enum ftdi_module_detach_mode module_detach_mode;
 };
 
 /**
@@ -229,6 +253,55 @@ struct ftdi_device_list
     /** pointer to libusb's usb_device */
     struct usb_device *dev;
 };
+
+
+/** TXDEN */
+#define CBUS_TXDEN 0
+/** PWREN# */
+#define CBUS_PWREN 1
+/** RXLED# */
+#define CBUS_RXLED 2
+/** TXLED#*/
+#define CBUS_TXLED 3
+/** RXLED# & TXLED# */
+#define CBUS_TXRXLED 4
+/** SLEEP# */
+#define CBUS_SLEEP 5
+/** 48 MHz clock */
+#define CBUS_CLK48 6
+/** 24 MHz clock */
+#define CBUS_CLK24 7
+/** 12 MHz clock */
+#define CBUS_CLK12 8
+/** 6 MHz clock */ 
+#define CBUS_CLK6 9
+/** Bitbang IO Mode*/
+#define CBUS_IOMODE 10
+/** Bitbang IO WR#*/
+#define CBUS_BB_WR 11
+/** Bitbang IO RD#*/
+#define CBUS_BB_RD 12
+
+
+/** Invert TXD# */
+#define INVERT_TXD 0x01
+/** Invert RXD# */ 
+#define INVERT_RXD 0x02
+/** Invert RTS# */
+#define INVERT_RTS 0x04
+/** Invert CTS# */
+#define INVERT_CTS 0x08
+/** Invert DTR# */
+#define INVERT_DTR 0x10
+/** Invert DSR# */
+#define INVERT_DSR 0x20
+/** Invert DCD# */
+#define INVERT_DCD 0x40
+/** Invert RI# */
+#define INVERT_RI  0x80
+
+/** High current drive. */
+#define HIGH_CURRENT_DRIVE 0x04
 
 /**
     \brief FTDI eeprom structure
@@ -245,7 +318,7 @@ struct ftdi_eeprom
     /** remote wakeup */
     int remote_wakeup;
     /** chip type */
-    int BM_type_chip;
+    int chip_type;
 
     /** input in isochronous transfer mode */
     int in_is_isochronous;
@@ -269,6 +342,14 @@ struct ftdi_eeprom
     char *product;
     /** serial number */
     char *serial;
+
+    /* Special function of FT232R devices (and possibly others as well) */
+    /** CBUS pin function. See CBUS_xxx defines. */
+    int cbus_function[5];
+    /** Select hight current drive. */
+    int high_current;
+    /** Select inversion of data lines (bitmask). */
+    int invert;
 
     /** eeprom size in bytes. This doesn't get stored in the eeprom
         but is the only way to pass it to ftdi_eeprom_build. */
