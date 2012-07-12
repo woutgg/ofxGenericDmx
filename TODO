@@ -1,3 +1,17 @@
+TODO porting and branch integration
+- test to see whether the addons actually still works with new libraries in OSX
+- extend script for library compilation in linux and run according tests
+- remove libusb (since it's been replaced by libusbx)
+- create script to compile libraries in w32 (build libftdi with cmake -> see pull rq)
+- recheck if vs2010 project still works
+- create working CB project in w32
+- make sure project files for osx/linux/w32:vs2010/w32:cb are all present in example and work properly (the latter should be true at this point)
+- update README with new supported systems and include credits etc
+- make sure it's obvious the addon supports the DMX USB PRO (does the first line in README work?)
+- (check why this works) does libftdi on w32 really not use libusb-compat?? it doesn't seem to but it must, right?
+
+
+
 TODO
 - Add v0.1 mark, copyright, credits to Chris, etc.
 - only tested on 10.6 & of0061 (and at least the libftdi in the d2xx driver does not work on 10.6 due to a libusb0.1 bug (which libftdi is linked against))

@@ -1,8 +1,11 @@
+This addon is built to control any DMX device, including the Enttec DMX USB PRO and 'simpler' devices.
+
 USAGE
-This addon requires libftdi, libusb-compat and libusb-1.0.
+This addon requires libftdi, libusb-compat and libusbx.
 For OSX and GNU/Linux, these have been included in the addon so you should not
 need any external files. However, you might need to add the relevant library
 paths to your project configuration.
+The included version of libftdi is 0.20, the version of libusbx is 1.0.12.
 
 It is also possible to use macports or a similar ports manager; in that case,
 it is important to create universal libraries. Besides you will of course have
@@ -29,6 +32,8 @@ NOTES
   this addon to avoid additional dependencies.
 - DmxRawDevice is untested.
 - by lack of RDM-capable devices to test with, such features have not been added.
+- to recompile the libraries this addon depends on, please see
+  scripts/building-libs-howto.txt.
 
 
 REFERENCES

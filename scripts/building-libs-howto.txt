@@ -1,0 +1,6 @@
+For OSX and GNU/Linux, the build-libs.sh script should auto-detect your OS and
+build the required library files; on windows, build-libs.bat should build the
+required files.
+If necessary, correct version numbers and possibly download URLs in the script
+files and after running them, copy the resultant files to their proper
+locations (directory structure matches that of ofxGenericDmx).
