@@ -2,7 +2,21 @@
 
 #NOTES
 # - to get fat binaries: http://www.mail-archive.com/libusbx-devel@lists.sourceforge.net/msg00442.html
-# - output logging (i.e., redirection) is not working properly for stderr and some commands (copying etc.)
+#
+#TODO
+# - fix output logging (i.e., redirection) is not working properly for stderr and some commands (copying etc.)
+# - make sure libftdi looks for libusb-config in the right place (maybe clear the corresponding hash? is the path order correct?)
+# - find a way to avoid the warning from libftdi's configure script about missing Python.h on linux
+
+# detect OS
+OS_NAME=`uname -s`
+if [ "x$OS_NAME" = "xDarwin" ]; then
+	OS_NAME=osx
+elif [ "x$OS_NAME" = "xLinux" ]; then
+	OS_NAME=linux
+else
+	OS_NAME=""
+fi
 
 #initialize variables (the only things you should change are the ..._VERSION and ..._DL_URL variables)
 
@@ -12,8 +26,14 @@
 COMPAT_X_PATCH=libusb-compat-0.1.4_libusbx.patch
 
 # *** Extra compiler flags
-ARCH_SPECS="-arch ppc -arch i386 -arch x86_64"
-EXTRA_CFLAGS=$ARCH_SPECS
+#NOTE: ARCH_SPECS will be emptied on all OSes but OSX
+if [ $OS_NAME = osx ]; then
+	ARCH_SPECS="-arch ppc -arch i386 -arch x86_64"
+else
+	ARCH_SPECS=""
+fi
+
+EXTRA_CFLAGS=
 EXTRA_LDFLAGS=
 
 BASE_DIR=`pwd`/build-output
@@ -37,13 +57,23 @@ FTDI_ARCH_NAME=$FTDI_BASE_NAME.tar.gz
 FTDI_DL_URL="http://www.intra2net.com/en/developer/libftdi/download/$FTDI_ARCH_NAME"
 
 
-function download_if_necessary() {
+download_if_necessary() {
 	FILE_NAME="$1"
 	URL="$2"
 
 	if [ ! -f "$FILE_NAME" ]; then
 		echo "*** Downloading $FILE_NAME from $URL ***"
 		wget "$URL" -O "$FILE_NAME" -a $LOG_FILE
+	fi
+}
+
+exit_on_error() {
+	if [ $? -ne 0 ]; then
+		if [ $# -gt 0 ]; then
+			ERRMSG=" ($1)"
+		fi
+		echo "An error occurred$ERRMSG, please review the log ($BUILD_LOG/$LOG_FILE)"
+		exit 1
 	fi
 }
 
@@ -71,25 +101,19 @@ if [ $# -gt 0 ]; then
 fi
 
 
-
 ### prepare building
 mkdir -p $BASE_DIR
 cd $BASE_DIR
 mkdir -p $BUILD_DIR
 rm -f $LOG_FILE
+>$LOG_FILE
 
-# detect OS
-OS_NAME=`uname -s`
-if [ "x$OS_NAME" = "xDarwin" ]; then
-	OS_NAME=osx
-elif [ "x$OS_NAME" = "xLinux" ]; then
-	OS_NAME=linux
-else
-	echo "Error: unknown OS (`uname -s`)"
+if [ "x$OS_NAME" = "x" ]; then
+	echo "!!! Error: unknown OS (`uname -s`)"
 	exit 1
 fi
-echo "*** Building for OS: $OS_NAME ***" 2>&1 | tee -a $LOG_FILE
 
+echo "*** Building for OS: $OS_NAME ***" 2>&1 | tee -a $LOG_FILE
 download_if_necessary $USBX_ARCH_NAME $USBX_DL_URL
 download_if_necessary $USB_COMPAT_ARCH_NAME $USB_COMPAT_DL_URL
 download_if_necessary $FTDI_ARCH_NAME $FTDI_DL_URL
@@ -105,27 +129,36 @@ cd $BASE_DIR
 echo "*** Building library $USBX_BASE_NAME ***" 2>&1 | tee -a $LOG_FILE
 cd $USBX_BASE_NAME
 CFLAGS="$CFLAGS $EXTRA_CFLAGS $ARCH_SPECS" LDFLAGS="$LDFLAGS $EXTRA_LDFLAGS" ./configure --prefix=$BUILD_DIR --disable-shared --disable-dependency-tracking 2>&1 >> $LOG_FILE
+exit_on_error "could not configure $USBX_BASE_NAME"
 make all install 2>&1 >> $LOG_FILE
+exit_on_error "could not build $USBX_BASE_NAME"
 cd ..
 echo >> $LOG_FILE
+
 
 ### build libusb-compat
 echo "*** Building library $USB_COMPAT_BASE_NAME ***" 2>&1 | tee -a $LOG_FILE
 cd $USB_COMPAT_BASE_NAME
 patch -uNp1 < $BASE_DIR/../$COMPAT_X_PATCH 2>&1 >> $LOG_FILE
-CFLAGS="$CFLAGS $EXTRA_CFLAGS" LDFLAGS="$LDFLAGS $EXTRA_LDFLAGS" \
+exit_on_error "could not patch $_USB_COMPAT_BASE_NAME"
+CFLAGS="$CFLAGS $EXTRA_CFLAGS $ARCH_SPECS" LDFLAGS="$LDFLAGS $EXTRA_LDFLAGS" \
 	LIBUSB_1_0_CFLAGS="-I$BUILD_DIR/include -I$BUILD_DIR/include/libusb-1.0" LIBUSB_1_0_LIBS=-L$BUILD_DIR/lib \
 	./configure --prefix=$BUILD_DIR --disable-shared --disable-dependency-tracking 2>&1 >> $LOG_FILE
+exit_on_error "could not configure $USB_COMPAT_BASE_NAME"
 make all install 2>&1 >> $LOG_FILE
+exit_on_error "could not build $USB_COMPAT_BASE_NAME"
 cd ..
 echo >> $LOG_FILE
+
 
 ### build libftdi
 echo "*** Building library $FTDI_BASE_NAME ***" 2>&1 | tee -a $LOG_FILE
 cd $FTDI_BASE_NAME
-CFLAGS="$CFLAGS $EXTRA_CFLAGS -I$BUILD_DIR/include" LDFLAGS="$LDFLAGS $EXTRA_LDFLAGS" \
-	./configure --prefix=$BUILD_DIR --disable-shared --disable-dependency-tracking --disable-libftdipp --without-examples --without-docs 2>&1 >> $LOG_FILE
+PATH="$BUILD_DIR/bin:$PATH" CFLAGS="$CFLAGS $EXTRA_CFLAGS $ARCH_SPECS -I$BUILD_DIR/include" LDFLAGS="$LDFLAGS $EXTRA_LDFLAGS" \
+	./configure --prefix=$BUILD_DIR --disable-shared --disable-dependency-tracking --disable-libftdipp --disable-python-binding --without-examples --without-docs 2>&1 >> $LOG_FILE
+exit_on_error "could not configure $FTDI_BASE_NAME"
 make all install 2>&1 >> $LOG_FILE
+exit_on_error "could not build $FTDI_BASE_NAME"
 cd ..
 echo >> $LOG_FILE
 
@@ -133,15 +166,15 @@ echo >> $LOG_FILE
 
 ### copy files to target directory structure
 echo "*** Copying relevant files ***" 2>&1 | tee -a $LOG_FILE
-mkdir -p $RESULT_DIR/libusbx/include $RESULT_DIR/libusbx/lib/osx
-mkdir -p $RESULT_DIR/libusb-compat/include $RESULT_DIR/libusb-compat/lib/osx
-mkdir -p $RESULT_DIR/libftdi/include $RESULT_DIR/libftdi/lib/osx
+mkdir -p $RESULT_DIR/libusbx/include $RESULT_DIR/libusbx/lib/$OS_NAME
+mkdir -p $RESULT_DIR/libusb-compat/include $RESULT_DIR/libusb-compat/lib/$OS_NAME
+mkdir -p $RESULT_DIR/libftdi/include $RESULT_DIR/libftdi/lib/$OS_NAME
 cp -R $BUILD_DIR/include/libusb-1.0 $RESULT_DIR/libusbx/include
 cp -R $BUILD_DIR/include/usb.h $RESULT_DIR/libusb-compat/include
 cp -R $BUILD_DIR/include/ftdi.h $RESULT_DIR/libftdi/include
-cp -R $BUILD_DIR/lib/libusb-1.0.a $RESULT_DIR/libusbx/lib/osx
-cp -R $BUILD_DIR/lib/libusb.a $RESULT_DIR/libusb-compat/lib/osx
-cp -R $BUILD_DIR/lib/libftdi.a $RESULT_DIR/libftdi/lib/osx
+cp -R $BUILD_DIR/lib/libusb-1.0.a $RESULT_DIR/libusbx/lib/$OS_NAME
+cp -R $BUILD_DIR/lib/libusb.a $RESULT_DIR/libusb-compat/lib/$OS_NAME
+cp -R $BUILD_DIR/lib/libftdi.a $RESULT_DIR/libftdi/lib/$OS_NAME
 echo >> $LOG_FILE
 
 
