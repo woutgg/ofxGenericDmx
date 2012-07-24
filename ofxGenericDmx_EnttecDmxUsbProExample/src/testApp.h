@@ -5,7 +5,7 @@
 #include "ofMain.h"
 #include "ofxGenericDmx.h"
 
-#define DMX_DATA_LENGTH 513 
+#define DMX_DATA_LENGTH 513
 
 // 513 values would create a maximum-sized packet (including the start code)
 // This is enough data for a full frame DMX message (512 channels)
@@ -42,7 +42,7 @@ class testApp : public ofBaseApp{
 		 *	- Static Green
 		 *	- Dynamic Color (still TODO!)
 		 */
-		 
+
 		float red, green, blue;
 
 		//here's where we will set/generate the color values
@@ -52,7 +52,7 @@ class testApp : public ofBaseApp{
 		ofImage colorPicker;
 		void generateColorPicker(int width, int height);
 		void pickColor(int x, int y);
-		
+
 		int frames;
 		int demoMode;
 };
