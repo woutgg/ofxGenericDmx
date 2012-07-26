@@ -9,7 +9,6 @@
 #include "DmxUsbProDevice.h"
 
 class DmxDevice;
-class DmxUsbProDevice::widgetParameters;
 
 class ofxGenericDmx {
 public:
