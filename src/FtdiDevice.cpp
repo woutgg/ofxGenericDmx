@@ -6,6 +6,7 @@
  */
 #include <unistd.h> /* for usleep() */
 #include <sys/time.h> /* for gettimeofday and related macros */
+#include <assert.h>
 #include "FtdiDevice.h"
 
 /* public constants */
