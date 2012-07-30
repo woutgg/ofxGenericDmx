@@ -4,3 +4,4 @@ build-libs.bat should build the required files.
 If necessary, correct version numbers and possibly download URLs in the
 Makefile files and after running them, copy the resultant files to their
 proper locations (directory structure matches that of ofxGenericDmx).
+Note that compiling libftdi1 needs cmake installed on your system.

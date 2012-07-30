@@ -1,5 +1,6 @@
 # TODO:
-# - see why the $(FTDI1_DIR) rule is not satisfied by existance of the dir created by clone_git_repo
+# - the tokens seem to have wrong timestamps: make initially does not detect them but does so after a while (1-10mins)
+# - it would be nice to stop with a proper error if cmake is missing (or wget for that matter)
 
 
 comma := ,
@@ -48,7 +49,7 @@ VPATH = $(BASE_DIR)
 
 # $(message TEXT, IS_CONTINUATION)
 define message
-	if [ "$(2)" == "" ]; then \
+	if [ "$(2)" = "" ]; then \
 		echo '*** ' $(1); \
 	else \
 		echo '    ' $(1); \
@@ -61,6 +62,16 @@ define mkdir_silent
 		mkdir -p $(1); \
 	fi
 endef
+
+## $(call require_cmake)
+#define require_cmake
+#echo "asfasdf"
+#	@$(shell /bin/sh -c "type ls"); \
+#	if [ $? -ne 0 ]; then \
+#		@$(call message,"Cmake is required to proceed, but missing on your system."); \
+#		return 1; \
+#	fi
+#endef
 
 # $(call download_if_necessary BASE_DIR, FILENAME, URL)
 define download_if_necessary
@@ -117,6 +128,7 @@ $(USBX_ARCH_NAME):
 
 $(FTDI1_BUILT_TOKEN): $(BASE_DIR) $(USBX_BUILT_TOKEN) $(FTDI1_TOKEN)
 	@$(call message,"Building $(FTDI1_NAME) for $(OS_NAME)")
+#	@$(call require_cmake)
 	cd $(BASE_DIR)/$(FTDI1_DIR) && \
 	cmake $(FTDI1_CMAKE_ARGS) -G "Unix Makefiles" && \
 	make ftdi1-static install
