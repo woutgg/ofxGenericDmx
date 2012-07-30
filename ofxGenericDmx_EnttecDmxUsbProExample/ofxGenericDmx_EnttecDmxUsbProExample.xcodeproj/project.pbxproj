@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		2200D24913D034DA00745B3D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24613D034DA00745B3D /* main.cpp */; };
 		2200D24A13D034DA00745B3D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24713D034DA00745B3D /* testApp.cpp */; };
-		2200D33A13D037BC00745B3D /* libftdi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200D31B13D037BC00745B3D /* libftdi.a */; };
-		2200D33E13D037BC00745B3D /* libusb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200D32C13D037BC00745B3D /* libusb.a */; };
 		2200D33F13D037BC00745B3D /* DmxDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D32F13D037BC00745B3D /* DmxDevice.cpp */; };
 		2200D34013D037BC00745B3D /* DmxRawDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33113D037BC00745B3D /* DmxRawDevice.cpp */; };
 		2200D34113D037BC00745B3D /* DmxUsbProDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33313D037BC00745B3D /* DmxUsbProDevice.cpp */; };
 		2200D34213D037BC00745B3D /* FtdiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33513D037BC00745B3D /* FtdiDevice.cpp */; };
 		2200D34313D037BC00745B3D /* ofxGenericDmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33713D037BC00745B3D /* ofxGenericDmx.cpp */; };
 		6C976A3715AF54DE00328621 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C976A3615AF54DE00328621 /* libusb-1.0.a */; };
+		6C976A4615C72A7400328621 /* libftdi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C976A4515C72A7400328621 /* libftdi1.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -68,10 +67,6 @@
 		2200D24613D034DA00745B3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2200D24713D034DA00745B3D /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		2200D24813D034DA00745B3D /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		2200D31613D037BC00745B3D /* ftdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftdi.h; sourceTree = "<group>"; };
-		2200D31B13D037BC00745B3D /* libftdi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftdi.a; sourceTree = "<group>"; };
-		2200D32713D037BC00745B3D /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb.h; sourceTree = "<group>"; };
-		2200D32C13D037BC00745B3D /* libusb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libusb.a; sourceTree = "<group>"; };
 		2200D32D13D037BC00745B3D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2200D32F13D037BC00745B3D /* DmxDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DmxDevice.cpp; sourceTree = "<group>"; };
 		2200D33013D037BC00745B3D /* DmxDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DmxDevice.h; sourceTree = "<group>"; };
@@ -85,6 +80,8 @@
 		2200D33813D037BC00745B3D /* ofxGenericDmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGenericDmx.h; sourceTree = "<group>"; };
 		6C976A3315AF54DE00328621 /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
 		6C976A3615AF54DE00328621 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
+		6C976A4215C72A7400328621 /* ftdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftdi.h; sourceTree = "<group>"; };
+		6C976A4515C72A7400328621 /* libftdi1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftdi1.a; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -124,9 +121,8 @@
 				E4C2424710CC5A17004149E2 /* AppKit.framework in Frameworks */,
 				E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */,
 				E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */,
-				2200D33A13D037BC00745B3D /* libftdi.a in Frameworks */,
-				2200D33E13D037BC00745B3D /* libusb.a in Frameworks */,
 				6C976A3715AF54DE00328621 /* libusb-1.0.a in Frameworks */,
+				6C976A4615C72A7400328621 /* libftdi1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,77 +143,10 @@
 		2200D31313D037BC00745B3D /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				2200D31413D037BC00745B3D /* libftdi */,
-				2200D32513D037BC00745B3D /* libusb-compat */,
+				6C976A4015C72A7400328621 /* libftdi1 */,
 				6C976A3015AF54DE00328621 /* libusbx */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		2200D31413D037BC00745B3D /* libftdi */ = {
-			isa = PBXGroup;
-			children = (
-				2200D31513D037BC00745B3D /* include */,
-				2200D31713D037BC00745B3D /* lib */,
-			);
-			path = libftdi;
-			sourceTree = "<group>";
-		};
-		2200D31513D037BC00745B3D /* include */ = {
-			isa = PBXGroup;
-			children = (
-				2200D31613D037BC00745B3D /* ftdi.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		2200D31713D037BC00745B3D /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				2200D31A13D037BC00745B3D /* osx */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		2200D31A13D037BC00745B3D /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				2200D31B13D037BC00745B3D /* libftdi.a */,
-			);
-			path = osx;
-			sourceTree = "<group>";
-		};
-		2200D32513D037BC00745B3D /* libusb-compat */ = {
-			isa = PBXGroup;
-			children = (
-				2200D32613D037BC00745B3D /* include */,
-				2200D32813D037BC00745B3D /* lib */,
-			);
-			path = "libusb-compat";
-			sourceTree = "<group>";
-		};
-		2200D32613D037BC00745B3D /* include */ = {
-			isa = PBXGroup;
-			children = (
-				2200D32713D037BC00745B3D /* usb.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		2200D32813D037BC00745B3D /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				2200D32B13D037BC00745B3D /* osx */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		2200D32B13D037BC00745B3D /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				2200D32C13D037BC00745B3D /* libusb.a */,
-			);
-			path = osx;
 			sourceTree = "<group>";
 		};
 		2200D32E13D037BC00745B3D /* src */ = {
@@ -249,17 +178,9 @@
 		6C976A3115AF54DE00328621 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				6C976A3215AF54DE00328621 /* libusb-1.0 */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		6C976A3215AF54DE00328621 /* libusb-1.0 */ = {
-			isa = PBXGroup;
-			children = (
 				6C976A3315AF54DE00328621 /* libusb.h */,
 			);
-			path = "libusb-1.0";
+			path = include;
 			sourceTree = "<group>";
 		};
 		6C976A3415AF54DE00328621 /* lib */ = {
@@ -274,6 +195,39 @@
 			isa = PBXGroup;
 			children = (
 				6C976A3615AF54DE00328621 /* libusb-1.0.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		6C976A4015C72A7400328621 /* libftdi1 */ = {
+			isa = PBXGroup;
+			children = (
+				6C976A4115C72A7400328621 /* include */,
+				6C976A4315C72A7400328621 /* lib */,
+			);
+			path = libftdi1;
+			sourceTree = "<group>";
+		};
+		6C976A4115C72A7400328621 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6C976A4215C72A7400328621 /* ftdi.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6C976A4315C72A7400328621 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6C976A4415C72A7400328621 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		6C976A4415C72A7400328621 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				6C976A4515C72A7400328621 /* libftdi1.a */,
 			);
 			path = osx;
 			sourceTree = "<group>";
@@ -503,9 +457,9 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 					"$(LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX)",
 				);
-				LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX = "\"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusb-compat/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX = "\"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/lib/osx\"";
 				OFX_GENERIC_DMX_BASE_PATH = "$(SRCROOT)/../../../addons/ofxGenericDmx";
-				OFX_GENERIC_DMX_HEADERS = "$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusb-compat/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/include";
+				OFX_GENERIC_DMX_HEADERS = "$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/include";
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -551,9 +505,9 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
 					"$(LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX)",
 				);
-				LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX = "\"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusb-compat/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_OFX_GENERIC_DMX = "\"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/lib/osx\" \"$(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/lib/osx\"";
 				OFX_GENERIC_DMX_BASE_PATH = "$(SRCROOT)/../../../addons/ofxGenericDmx";
-				OFX_GENERIC_DMX_HEADERS = "$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusb-compat/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/include";
+				OFX_GENERIC_DMX_HEADERS = "$(OFX_GENERIC_DMX_BASE_PATH)/libs/libftdi/include $(OFX_GENERIC_DMX_BASE_PATH)/libs/libusbx/include";
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -578,7 +532,13 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/android/armeabi\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../addons/ofxGenericDmx/libs/libftdi1/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/android/armeabi-v7a\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/iphone\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/linux\"";
@@ -586,6 +546,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/vs2010\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/win_cb\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/../../../addons/ofxGenericDmx/libs/libftdi/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = ofxGenericDmx_EnttecDmxUsbProExampleDebug;
 				WRAPPER_EXTENSION = app;
@@ -608,7 +569,13 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/android/armeabi\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../addons/ofxGenericDmx/libs/libftdi1/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/android/armeabi-v7a\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/iphone\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/linux\"";
@@ -616,6 +583,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/vs2010\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/win_cb\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/../../../addons/ofxGenericDmx/libs/libftdi/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = ofxGenericDmx_EnttecDmxUsbProExample;
 				WRAPPER_EXTENSION = app;
