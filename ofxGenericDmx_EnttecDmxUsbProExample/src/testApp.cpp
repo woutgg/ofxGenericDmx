@@ -21,6 +21,7 @@ void testApp::setup(){
 
 	frames = 0;
 
+	printf("ofxGenericDmx addon version: %s.%s\n", ofxGenericDmx::VERSION_MAJOR, ofxGenericDmx::VERSION_MINOR);
 }
 
 //--------------------------------------------------------------
