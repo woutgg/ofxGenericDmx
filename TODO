@@ -1,4 +1,14 @@
+TODO porting and branch integration
+- create script to compile libraries in w32 (build libftdi with cmake -> see pull rq)
+- recheck if vs2010 project still works
+- create working CB project in w32
+- make sure project files for osx/linux/w32:vs2010/w32:cb are all present in example and work properly (the latter should be true at this point)
+- (check why this works --> perhaps because of the dep change?) does libftdi on w32 really not use libusb-compat?? it doesn't seem to but it must, right?
+- follow guidelines here (http://ofxaddons.com/howto) as good as possible and optimize addon for the site
+
+
 TODO
+- libftdi on git (git@github.com:woutgg/ofxGenericDmx.git) links to libusb(x) 1.0. change to custom build so libusb-compat can be dropped?
 - Add v0.1 mark, copyright, credits to Chris, etc.
 - only tested on 10.6 & of0061 (and at least the libftdi in the d2xx driver does not work on 10.6 due to a libusb0.1 bug (which libftdi is linked against))
 - search oF forum to find all dmx addons and their mods in order to cover their collective support
@@ -6,9 +16,7 @@ TODO
 - adapt for serial communication: create SerialHwChannel with subclasses VcpChannel and FtdiChannel(currently FtdiDevice)
   then adapt DmxDevice and subclasses to use the interface instead of FtdiDevice/FtdiChannel
 - Maybe move subclasses to subdirectory (although ofxOsc, for instance, does not do so)
-- Test and adapt for windows (use d2xx? or libftdi + libusb-win32?)
 - Add proper documentation to code.
-- links to all references used (at least ftdi & enttec docs)
 - decide how to handle the start code (it's probably fine the way it is)
 
 linux C::B project setup:

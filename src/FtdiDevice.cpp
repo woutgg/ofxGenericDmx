@@ -327,7 +327,7 @@ const void FtdiDevice::freeDeviceList()
 
 /* PRIVATE FUNCTIONS */
 
-struct FtdiDevice::usbInformation* FtdiDevice::fetchUsbInformation( ftdi_context* context, struct usb_device* dev )
+struct FtdiDevice::usbInformation* FtdiDevice::fetchUsbInformation( ftdi_context* context, struct libusb_device* dev )
 {
 	struct usbInformation* info = new struct usbInformation();
 	

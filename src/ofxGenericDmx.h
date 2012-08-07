@@ -12,6 +12,9 @@ class DmxDevice;
 
 class ofxGenericDmx {
 public:
+	static const char* VERSION_MAJOR;
+	static const char* VERSION_MINOR;
+	
 	static DmxDevice* createDevice( DmxDevice::DMX_DEVICE_TYPE type = DmxDevice::DMX_DEVICE_ENTTECPRO );
 	static DmxDevice* openFirstDevice( bool usbProOnly = true );
 	static const std::vector<struct FtdiDevice::deviceInfo>* getDeviceList();

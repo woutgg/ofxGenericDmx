@@ -9,6 +9,14 @@
 #include "DmxUsbProDevice.h"
 #include "ofxGenericDmx.h"
 
+/* NOTE:
+ * VERSION_MAJOR must be a whole number, VERSION_MINOR must be a whole number
+ * optionally followed by '-' and some short free-form text (e.g.:
+ * "3-rc1" or "2-SNAPSHOT").
+ */
+const char* ofxGenericDmx::VERSION_MAJOR = "0";
+const char* ofxGenericDmx::VERSION_MINOR = "1";
+
 DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
 {
 	DmxDevice* dev = 0;

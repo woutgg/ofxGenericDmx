@@ -80,7 +80,7 @@ public:
 		
 	private:
 		//NOTE: Apart from FtdiDevice, no classes have access to the ftdiDevice struct.
-		struct usb_device* ftdiDevice;
+		struct libusb_device* ftdiDevice;
 		
 		friend class FtdiDevice;
 	};
@@ -130,7 +130,7 @@ private:
 	FtdiDevice( const FtdiDevice& other );
 	FtdiDevice& operator=( const FtdiDevice& other );
 	
-	static struct usbInformation* fetchUsbInformation( ftdi_context* context, struct usb_device* dev );
+	static struct usbInformation* fetchUsbInformation( ftdi_context* context, struct libusb_device* dev );
 	
 	struct ftdi_context* context_;
 	const struct usbInformation* usbInfo_;

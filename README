@@ -1,38 +1,53 @@
+This addon is built to control any DMX device, including the Enttec DMX USB PRO and 'simpler' devices.
+It should work on most systems supported by openFrameworks itself.
+
 USAGE
-This addon requires libftdi, libusb-compat and libusb-1.0.
-For OSX and GNU/Linux, these have been included in the addon so you should not
-need any external files. However, you might need to add the relevant library
-paths to your project configuration.
+This addon requires libftdi, libusb-compat and libusbx, which have all been
+included for OSX, GNU/Linux and Windows.
+Depending on your programming environment, you might need to add the relevant
+library and include paths to your project configuration. As reference please
+take a look at the examples supplied with the addon.
 
-It is also possible to use macports or a similar ports manager; in that case,
-it is important to create universal libraries. Besides you will of course have
-to add the proper include paths.
+The included version of libftdi is 0.20, the version of libusbx is 1.0.12 and
+the version of libusb-compat is 0.1.4. Should you for some reason want to
+rebuild the libraries, a script is provided to automatically download and build
+all library files, see 'scripts/build-libs.sh'.
 
-The addon should work on any platform supported by the required libraries, this
-includes Windows. However, some work needs to be done to get there.
+CREDITS
+This addon is based on the basic structure of the DMX512 addon by Chris O'Shea
+and also uses code from that addon for the USB PRO protocol.
+As second reference, the Enttec USB PRO example was used (see below).
 
 
-NOTES
+OS SPECIFIC NOTES
 - (OSX specific) If the addon compiles, appears to open a device but does not
   send any data, it is likely you have the Ftdi VCP driver installed. This can
 	be determined by checking if /dev/ttyUsbSerial exists.
 	Note that the Arduino software also installs this driver. A temporary solution
 	is to uninstall the driver (see Ftdi's installation guide:
 	http://www.ftdichip.com/Support/Documents/InstallGuides.htm).
-- Should you choose to install your own libraries, make sure to install them all
-  as universal libraries. (e.g., OSX macports command would be:
-	'sudo port install libftdi +universal')
-- While setting up a Code::Blocks project, the libraries will have to be added
+- (Linux) By default, DMX controllers require root permissions; this can be
+  fixed by using udev (see here: https://github.com/libusbx/libusbx/wiki/FAQ#wiki-Can_I_run_Linux_libusbx_applications_without_root_privilege).
+	An example rules file for the Enttec DMX USB PRO has been included
+	(scripts/scripts/75-permissions-enttec.rules), copy this file to
+	/etc/udev/rules.d to use it.
+- (Windows or Linux) While setting up a Code::Blocks project, the libraries will have to be added
   to link against. Make sure they end up in the right order: first libftdi, then
-	libusb-compat and finally usb-1.0.
-- libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in
-  this addon to avoid additional dependencies.
+	libusb-compat and finally libusbx.
+
+MISCELLANEOUS NOTES
 - DmxRawDevice is untested.
 - by lack of RDM-capable devices to test with, such features have not been added.
+- to recompile the libraries this addon depends on, please see
+  scripts/building-libs-howto.txt.
+- libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in
+  this addon to avoid additional dependencies.
 
 
 REFERENCES
 - http://forum.openframeworks.cc/index.php?&topic=3938.0
 - http://forum.openframeworks.cc/index.php?&topic=928.0
+- Enttec USB PRO protocol specification: http://www.enttec.com/docs/dmx_usb_pro_api_spec.pdf
+- Enttec USB PRO / ftdi example: http://www.enttec.com/download/pro_example_v2.zip
 
 TODO => see TODO file
