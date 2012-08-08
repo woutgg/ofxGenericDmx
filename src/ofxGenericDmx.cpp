@@ -15,7 +15,7 @@
  * "3-rc1" or "2-SNAPSHOT").
  */
 const char* ofxGenericDmx::VERSION_MAJOR = "0";
-const char* ofxGenericDmx::VERSION_MINOR = "1";
+const char* ofxGenericDmx::VERSION_MINOR = "2";
 
 DmxDevice* ofxGenericDmx::createDevice( DmxDevice::DMX_DEVICE_TYPE type )
 {
