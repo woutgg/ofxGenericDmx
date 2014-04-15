@@ -34,6 +34,7 @@ REFERENCES
   * <http://forum.openframeworks.cc/index.php?&topic=928.0>
   * Enttec USB PRO protocol specification: <http://www.enttec.com/docs/dmx_usb_pro_api_spec.pdf>
   * Enttec USB PRO / ftdi example: <http://www.enttec.com/download/pro_example_v2.zip>
+  * More interesting information on the device: <http://members.westnet.com.au/rowanmac/opendmx.html>
 
 TODO
 ----

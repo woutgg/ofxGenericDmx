@@ -1,3 +1,13 @@
+TODO dmx usb pro mk2
+- openframeworks thread leading up to this: http://forum.openframeworks.cc/index.php?topic=928.45
+- what is this CDM driver exactly?
+- apparently the new API documents are not public but can be requested by email
+- 2 new api requests have been added - relevant discussion (also on NDA): https://groups.google.com/forum/#!msg/open-lighting/Vbld2uFDQxE/5VUSq6CktoMJ
+  -> both can be implemented, the mk1 will not respond to them; so we could at least detect a mk2 device and set its api key
+- support must be added for multiple universes (how? is this described in the mk2 api documentation?)
+- support must be added for configuring api keys (and more? how exactly does this work?)
+- for completeness sake, this would also need RDM support
+
 TODO porting and branch integration
 - create script to compile libraries in w32 (build libftdi with cmake -> see pull rq)
 - recheck if vs2010 project still works
