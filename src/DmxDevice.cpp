@@ -88,3 +88,10 @@ const char* DmxDevice::getLastError() const
  */
 const struct FtdiDevice::usbInformation* DmxDevice::getUsbInformation() const
 { return ftdiDevice_->getUsbInformation(); }
+
+/*
+ * Reset the FTDI device and return the call result.
+ */
+int DmxDevice::reset()
+{ return ftdiDevice_->reset(); }
+

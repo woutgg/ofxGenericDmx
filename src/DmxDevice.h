@@ -27,6 +27,7 @@ public:
 	//forwarding functions for FtdiDevice
 	const char* getLastError() const;
 	const struct FtdiDevice::usbInformation* getUsbInformation() const;
+	virtual int reset();
 	
 protected:
 	FtdiDevice* ftdiDevice_;
