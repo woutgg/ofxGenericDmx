@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0022E46C19A5FB4F00B9D5D3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0022E46B19A5FB4F00B9D5D3 /* CoreVideo.framework */; };
 		2200D24913D034DA00745B3D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24613D034DA00745B3D /* main.cpp */; };
 		2200D24A13D034DA00745B3D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24713D034DA00745B3D /* testApp.cpp */; };
 		2200D33F13D037BC00745B3D /* DmxDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D32F13D037BC00745B3D /* DmxDevice.cpp */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0022E46B19A5FB4F00B9D5D3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2200D24613D034DA00745B3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2200D24713D034DA00745B3D /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		2200D24813D034DA00745B3D /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0022E46C19A5FB4F00B9D5D3 /* CoreVideo.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
@@ -243,6 +246,7 @@
 		BBAB23C913894ECA00AA2426 /* system frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0022E46B19A5FB4F00B9D5D3 /* CoreVideo.framework */,
 				E4C2424410CC5A17004149E2 /* AppKit.framework */,
 				E4C2424510CC5A17004149E2 /* Cocoa.framework */,
 				E4C2424610CC5A17004149E2 /* IOKit.framework */,
@@ -343,6 +347,8 @@
 /* Begin PBXProject section */
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "ofxGenericDmx_EnttecDmxUsbProExample" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
