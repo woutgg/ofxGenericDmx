@@ -23,7 +23,6 @@ OS SPECIFIC NOTES
 
 MISCELLANEOUS NOTES
 -------------------
- * DmxRawDevice is untested.
  * By lack of an RDM-capable device to test with, such features have not been added.
  * To recompile the libraries this add-on depends on, please see scripts/building-libs-howto.txt.
  * libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in this add-on to avoid additional dependencies.
