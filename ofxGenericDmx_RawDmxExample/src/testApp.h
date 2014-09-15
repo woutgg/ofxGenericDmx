@@ -5,6 +5,8 @@
 #include "ofMain.h"
 #include "ofxGenericDmx.h"
 
+//NOTE: at least on one occasion, sending all 512 channels failed to work.
+//Experiments led to stable operation by sending only 494 channels.
 #define DMX_DATA_LENGTH 494
 
 // 513 values would create a maximum-sized packet (including the start code)
