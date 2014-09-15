@@ -8,8 +8,9 @@ TODO porting and branch integration
 
 
 TODO
+- move out build settings to .xcconfig to reduce changes to the project file itself (<http://b2cloud.com.au/tutorial/using-a-xcconfig-file/>)
 - libftdi on git (git@github.com:woutgg/ofxGenericDmx.git) links to libusb(x) 1.0. change to custom build so libusb-compat can be dropped?
-- Add v0.1 mark, copyright, credits to Chris, etc.
+- Add v0.1 mark, copyright, etc.
 - only tested on 10.6 & of0061 (and at least the libftdi in the d2xx driver does not work on 10.6 due to a libusb0.1 bug (which libftdi is linked against))
 - search oF forum to find all dmx addons and their mods in order to cover their collective support
   (would probably mean adding serial/vcp support and maybe dmx512 support as well)
@@ -18,6 +19,9 @@ TODO
 - Maybe move subclasses to subdirectory (although ofxOsc, for instance, does not do so)
 - Add proper documentation to code.
 - decide how to handle the start code (it's probably fine the way it is)
+- see if any of these help sorting out xcode project differences:
+  * <https://github.com/simonwagner/mergepbx/>
+  * <http://danieltull.co.uk/blog/2013/09/05/easier-merging-of-xcode-project-files/>
 
 linux C::B project setup:
  -add files to project
