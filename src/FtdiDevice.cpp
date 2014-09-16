@@ -5,7 +5,6 @@
  * - (getDeviceList) generate warning if fetchUsbInformation() returns null?
  */
 #ifdef _WIN32
-# include <assert.h>
 # include <time.h> /* for gettimeofday and related macros */
 # include "timeval-macros.h"
 # define usleep( usecs ) Sleep( ( usecs ) / 1000 )
@@ -14,6 +13,7 @@
 # include <sys/time.h> /* for gettimeofday and related macros */
 #endif
 
+#include <assert.h>
 #include "FtdiDevice.h"
 
 /* public constants */
@@ -334,7 +334,7 @@ const void FtdiDevice::freeDeviceList()
 
 /* PRIVATE FUNCTIONS */
 
-struct FtdiDevice::usbInformation* FtdiDevice::fetchUsbInformation( ftdi_context* context, struct usb_device* dev )
+struct FtdiDevice::usbInformation* FtdiDevice::fetchUsbInformation( ftdi_context* context, struct libusb_device* dev )
 {
 	struct usbInformation* info = new struct usbInformation();
 	

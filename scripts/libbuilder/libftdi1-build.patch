@@ -1,0 +1,80 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 14911ad..ba64b1e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -29,19 +29,15 @@ INCLUDE_DIRECTORIES(${LIBUSB_INCLUDE_DIR})
+ find_package(Boost)
+ 
+ # Set components
+-set(CPACK_COMPONENTS_ALL sharedlibs staticlibs headers)
+-set(CPACK_COMPONENT_SHAREDLIBS_DISPLAY_NAME "Shared libraries")
++set(CPACK_COMPONENTS_ALL staticlibs headers)
+ set(CPACK_COMPONENT_STATICLIBS_DISPLAY_NAME "Static libraries")
+ set(CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Headers")
+ 
+-set(CPACK_COMPONENT_SHAREDLIBS_DESCRIPTION
+-"Shared library for general use.")
+ set(CPACK_COMPONENT_STATICLIBS_DESCRIPTION
+ "Static library, good if you want to embed libftdi1 in your application.")
+ set(CPACK_COMPONENT_HEADERS_DESCRIPTION
+ "C/C++ header files.")
+ 
+-set(CPACK_COMPONENT_SHAREDLIBS_GROUP "Development")
+ set(CPACK_COMPONENT_STATICLIBS_GROUP "Development")
+ set(CPACK_COMPONENT_HEADERS_GROUP    "Development")
+ 
+@@ -104,7 +100,6 @@ add_subdirectory(bindings)
+ add_subdirectory(ftdi_eeprom)
+ add_subdirectory(examples)
+ add_subdirectory(packages)
+-add_subdirectory(test)
+ 
+ # "make dist" target
+ set(ARCHIVE_NAME ${CMAKE_PROJECT_NAME}-${VERSION_STRING})
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 0b8c009..73f3e17 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -21,30 +21,18 @@ configure_file(ftdi_version_i.h.in "${CMAKE_CURRENT_BINARY_DIR}/ftdi_version_i.h
+ set(c_sources     ftdi.c ftdi_stream.c)
+ set(c_headers     ftdi.h)
+ 
+-add_library(ftdi1 SHARED ${c_sources})
+-
+ math(EXPR VERSION_FIXUP "${MAJOR_VERSION} + 1")    # Compatiblity with previous releases
+-set_target_properties(ftdi1 PROPERTIES VERSION ${VERSION_FIXUP}.${MINOR_VERSION}.0 SOVERSION 2)
+ 
+ # Static library
+ add_library(ftdi1-static STATIC ${c_sources})
+ set_target_properties(ftdi1-static PROPERTIES OUTPUT_NAME "ftdi1")
+ 
+ # Prevent clobbering each other during the build
+-set_target_properties(ftdi1 PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+ set_target_properties(ftdi1-static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+ 
+-# Dependencies
+-target_link_libraries(ftdi1 ${LIBUSB_LIBRARIES})
+-
+ # Install
+ if(${UNIX})
+ 
+-   install( TARGETS ftdi1
+-            LIBRARY DESTINATION lib${LIB_SUFFIX}
+-            COMPONENT sharedlibs
+-            )
+-
+    install( TARGETS ftdi1-static
+             ARCHIVE DESTINATION lib${LIB_SUFFIX}
+             COMPONENT staticlibs
+@@ -59,11 +47,6 @@ endif(${UNIX})
+ 
+ if(${WIN32})
+ 
+-   install( TARGETS ftdi1
+-            DESTINATION bin
+-            COMPONENT sharedlibs
+-            )
+-
+    install( TARGETS ftdi1-static
+             DESTINATION bin
+             COMPONENT staticlibs

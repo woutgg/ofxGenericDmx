@@ -10,8 +10,9 @@ void testApp::setup(){
 	memset( dmxData_, 0, DMX_DATA_LENGTH );
 
 	//open the device
-	dmxInterface_ = ofxGenericDmx::openFirstDevice();
-	if ( dmxInterface_ == 0 ) printf( "No Enttec Device Found\n" );
+	dmxInterface_ = ofxGenericDmx::createDevice(DmxDevice::DMX_DEVICE_RAW);
+	bool opened = dmxInterface_->open();
+	if ( dmxInterface_ == 0 || !opened ) printf( "No FTDI Device Found\n" );
 	else printf( "isOpen: %i\n", dmxInterface_->isOpen() );
 
 	//example/color-related-stuff
@@ -47,9 +48,9 @@ void testApp::update(){
 	setColorsToSend();
 
 	//asign our colors to the right dmx channels
-	dmxData_[10] = int(red);
-	dmxData_[11] = int(green);
-	dmxData_[12] = int(blue);
+	dmxData_[1] = int(red);
+	dmxData_[2] = int(green);
+	dmxData_[3] = int(blue);
 
 	//force first byte to zero (it is not a channel but DMX type info - start code)
 	dmxData_[0] = 0;
