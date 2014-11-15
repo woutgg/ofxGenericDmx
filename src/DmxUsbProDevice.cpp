@@ -14,6 +14,7 @@
 #include <cstring>
 #include <iostream> /* TEMP: for user configuration bug warnings */
 #include <math.h> /* for lroundf() */
+#include <unistd.h> /* for usleep() */
 #include "DmxDevice.h"
 #include "DmxUsbProDevice.h"
 
