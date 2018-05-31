@@ -20,12 +20,16 @@ OS SPECIFIC NOTES
  * (Linux) By default, DMX controllers require root permissions; this can be fixed by using udev (see here: <https://github.com/libusbx/libusbx/wiki/FAQ#wiki-Can_I_run_Linux_libusbx_applications_without_root_privilege>). An example rules file for the Enttec DMX USB PRO has been included (scripts/scripts/75-permissions-enttec.rules), copy this file to /etc/udev/rules.d to use it.
  * (Windows/Linux) While setting up a Code::Blocks project, the libraries will have to be added to link against. Make sure they end up in the right order: first libftdi, then libusb-compat and finally libusbx.
 
-
 MISCELLANEOUS NOTES
 -------------------
  * By lack of an RDM-capable device to test with, such features have not been added.
  * To recompile the libraries this add-on depends on, please see scripts/building-libs-howto.txt.
  * libftdi has a C++ wrapper; it depends on Boost however, so it isn't used in this add-on to avoid additional dependencies.
+
+LICENSE
+-------
+This add-on is made available under the MIT license, see the file `LICENSE` for details.
+Additionally, it uses the [libftdi](https://www.intra2net.com/en/developer/libftdi/) and [libusbx](https://sourceforge.net/projects/libusbx/) libraries, both released under the LGPL 2.0 license.
 
 REFERENCES
 ----------
