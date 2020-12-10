@@ -37,7 +37,7 @@ To reload the udev rules to make them active without rebooting:
 sudo udevadm control --reload-rules && sudo udevadm trigger 
 ```
 
-## Custom Projects
+### Custom Projects
 If you are creating your own project, you need to add some extra configuration for libftdi
 
 If using a Makefile, add this to config.make:
