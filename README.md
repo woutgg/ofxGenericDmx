@@ -17,25 +17,28 @@ This add-on is based on the basic structure of the DMX512 add-on by Chris O'Shea
 
 ## Linux
 
- * On GNU/Linux you just need to install the libftdi library. e.g. on Ubuntu:
+### LibFTDI 
+On GNU/Linux you just need to install the libFTDI  library. e.g. on Ubuntu:
 ```
 sudo apt-get install libftdi-dev
 ```
 
- * By default, DMX controllers require root permissions; this can be fixed by using udev rules. An example rules file for the Enttec DMX USB PRO has been included (scripts/scripts/75-permissions-enttec.rules). Copy this file to /etc/udev/rules.d to use it.
+### Udev rules
+By default, DMX controllers require root permissions; this can be fixed by using udev rules. An example rules file for the Enttec DMX USB PRO has been included (scripts/scripts/75-permissions-enttec.rules). Copy this file to /etc/udev/rules.d to use it.
 
-Install udev rules:
+To install the udev rules:
 ``` 
 sudo cp 75-permissions-enttec.rules /etc/udev/rules.d/
 ```
 
-reload udev rules:
+To reload the udev rules to make them active without rebooting:
 
 ``` 
 sudo udevadm control --reload-rules && sudo udevadm trigger 
 ```
 
-* If you are creating your own project, you need to add some extra configuration for libftdi
+## Custom Projects
+If you are creating your own project, you need to add some extra configuration for libftdi
 
 If using a Makefile, add this to config.make:
 ```
