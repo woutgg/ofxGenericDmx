@@ -45,7 +45,7 @@ PROJECT_LDFLAGS+=-lftdi
 
 If using qtCreator, add this to the .qbs file:
 ```
-of.staticLibraries: \["ftdi"\]
+of.staticLibraries: ["ftdi"]
 ```
 
 ## Windows
