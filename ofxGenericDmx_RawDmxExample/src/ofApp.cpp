@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include "testApp.h"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
 
 	ofSetFrameRate( 44 );
 
@@ -26,7 +26,7 @@ void testApp::setup(){
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
 
 	/*
 	 *	let's set some dmx values to be communicated with your dmx interface!
@@ -65,7 +65,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::setColorsToSend(){
+void ofApp::setColorsToSend(){
 
 	/*
 	 *	three different examples/demoModes that set/generate a color
@@ -99,7 +99,7 @@ void testApp::setColorsToSend(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
 
 	//use the color for the app background
 	ofBackground(red, green, blue);
@@ -126,7 +126,7 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 
 	switch (key) {
 		case OF_KEY_RIGHT:
@@ -141,37 +141,37 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 
 }
 
 //--------------------------------------------------------------
-void testApp::exit(){
+void ofApp::exit(){
 
 	if ( dmxInterface_ && dmxInterface_->isOpen() ) {
 		// send all zeros (black) to every dmx channel and close!
@@ -182,7 +182,7 @@ void testApp::exit(){
 }
 
 //--------------------------------------------------------------
-void testApp::generateColorPicker(int width , int height){
+void ofApp::generateColorPicker(int width , int height){
 
 	//generate a colorPicker image (needs oF007 for the color operations)
 
@@ -214,7 +214,7 @@ void testApp::generateColorPicker(int width , int height){
 }
 
 //--------------------------------------------------------------
-void testApp::pickColor(int x , int y){
+void ofApp::pickColor(int x , int y){
 
 	/*
 	//get the color value in our colorPicker image under the mouse location

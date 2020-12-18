@@ -1,20 +1,17 @@
-#ifndef _TEST_APP
-#define _TEST_APP
+#pragma once
 
 
 #include "ofMain.h"
 #include "ofxGenericDmx.h"
 
-//NOTE: at least on one occasion, sending all 512 channels failed to work.
-//Experiments led to stable operation by sending only 494 channels.
-#define DMX_DATA_LENGTH 494
+#define DMX_DATA_LENGTH 513
 
 // 513 values would create a maximum-sized packet (including the start code)
 // This is enough data for a full frame DMX message (512 channels)
 // http://en.wikipedia.org/wiki/DMX512#Protocol
 
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
 
 	public:
 		void setup();
@@ -58,5 +55,3 @@ class testApp : public ofBaseApp{
 		int frames;
 		int demoMode;
 };
-
-#endif
