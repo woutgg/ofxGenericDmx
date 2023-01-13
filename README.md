@@ -25,6 +25,7 @@ I was able to run the `ofxGenericDmx_RawDmxExample` from this addon with one min
 ```
     
 I also needed to exclude arm64 in order for the code to run (see screenshot).
+![exclude arm64](https://github.com/stephanschulz/ofxGenericDmx/blob/master/macOS-12.jpg)
 
 ## Linux
 
