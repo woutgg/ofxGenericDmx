@@ -4,8 +4,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-	ofSetFrameRate( 44 );
-
+//	ofSetFrameRate( 44 );
+    ofSetFrameRate( 30 );
 	//zero our DMX value array
 	memset( dmxData_, 0, DMX_DATA_LENGTH );
 
