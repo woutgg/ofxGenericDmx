@@ -15,6 +15,17 @@ This add-on is based on the basic structure of the DMX512 add-on by Chris O'Shea
  * (OSX) If the add-on compiles, appears to open a device but does not send any data, it is likely you have the Ftdi VCP driver installed. This can be determined by checking if /dev/ttyUsbSerial exists. Note that (older) Arduino software also installs this driver.
    A temporary solution is to uninstall the driver (see Ftdi's installation guide: <http://www.ftdichip.com/Support/Documents/InstallGuides.htm>). If things still do not work, try rebooting your computer.
 
+## macOS Monterey 12.0
+I was able to run the `ofxGenericDmx_RawDmxExample` from this addon with one minor modification in DmxUsbProDevice.cpp line 202.
+
+```
+    unsigned char reqParams[2];
+    reqParams [0] = userConfigLength & 0xFF;
+    reqParams [1] = ( userConfigLength >> 8    ) & 0xFF;
+```
+    
+I also needed to exclude arm64 in order for the code to run (see screenshot).
+
 ## Linux
 
 ### LibFTDI 
