@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0022E46C19A5FB4F00B9D5D3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0022E46B19A5FB4F00B9D5D3 /* CoreVideo.framework */; };
 		2200D24913D034DA00745B3D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24613D034DA00745B3D /* main.cpp */; };
-		2200D24A13D034DA00745B3D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24713D034DA00745B3D /* testApp.cpp */; };
+		2200D24A13D034DA00745B3D /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D24713D034DA00745B3D /* ofApp.cpp */; };
 		2200D33F13D037BC00745B3D /* DmxDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D32F13D037BC00745B3D /* DmxDevice.cpp */; };
 		2200D34013D037BC00745B3D /* DmxRawDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33113D037BC00745B3D /* DmxRawDevice.cpp */; };
 		2200D34113D037BC00745B3D /* DmxUsbProDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2200D33313D037BC00745B3D /* DmxUsbProDevice.cpp */; };
@@ -67,8 +67,8 @@
 /* Begin PBXFileReference section */
 		0022E46B19A5FB4F00B9D5D3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2200D24613D034DA00745B3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		2200D24713D034DA00745B3D /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
-		2200D24813D034DA00745B3D /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
+		2200D24713D034DA00745B3D /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
+		2200D24813D034DA00745B3D /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		2200D32D13D037BC00745B3D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2200D32F13D037BC00745B3D /* DmxDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DmxDevice.cpp; sourceTree = "<group>"; };
 		2200D33013D037BC00745B3D /* DmxDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DmxDevice.h; sourceTree = "<group>"; };
@@ -303,8 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				2200D24613D034DA00745B3D /* main.cpp */,
-				2200D24713D034DA00745B3D /* testApp.cpp */,
-				2200D24813D034DA00745B3D /* testApp.h */,
+				2200D24713D034DA00745B3D /* ofApp.cpp */,
+				2200D24813D034DA00745B3D /* ofApp.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -407,7 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2200D24913D034DA00745B3D /* main.cpp in Sources */,
-				2200D24A13D034DA00745B3D /* testApp.cpp in Sources */,
+				2200D24A13D034DA00745B3D /* ofApp.cpp in Sources */,
 				2200D33F13D037BC00745B3D /* DmxDevice.cpp in Sources */,
 				2200D34013D037BC00745B3D /* DmxRawDevice.cpp in Sources */,
 				2200D34113D037BC00745B3D /* DmxUsbProDevice.cpp in Sources */,

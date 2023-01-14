@@ -27,6 +27,11 @@ I was able to run the `ofxGenericDmx_RawDmxExample` from this addon with one min
 I also needed to exclude arm64 in order for the code to run (see screenshot).
 ![exclude arm64](https://github.com/stephanschulz/ofxGenericDmx/blob/master/macOS-12.jpg)
 
+This enabled me to use these openDMX devices
+
+[USB-DMX DONGLE](https://www.hansonelectronics.com.au/product/usb-dmx-dongle-40cm/)
+[DSD TECH USB to DMX RS485 Adapter with FTDI Chip] (https://www.amazon.ca/dp/B07WV6P5W6?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+
 ## Linux
 
 ### LibFTDI 
