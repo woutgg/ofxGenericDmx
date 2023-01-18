@@ -39,6 +39,7 @@ public:
     void exit();
 //    std::string getDeviceString();
 //    std::string deviceString;
+    //stephan
 protected:
 	FtdiDevice* ftdiDevice_;
 	
