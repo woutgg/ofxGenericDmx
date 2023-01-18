@@ -40,6 +40,7 @@ public:
 //    std::string getDeviceString();
 //    std::string deviceString;
     //stephan
+    //qynn
 protected:
 	FtdiDevice* ftdiDevice_;
 	
