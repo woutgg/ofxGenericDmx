@@ -199,10 +199,10 @@ bool DmxUsbProDevice::fetchWidgetParameters( unsigned int userConfigLength ) con
 	}
 	
 	int r;
-	unsigned char reqParams[2] = {
-		userConfigLength & 0xFF,
-		( userConfigLength >> 8	) & 0xFF
-	};
+    unsigned char reqParams[2];
+    reqParams [0] = userConfigLength & 0xFF;
+    reqParams [1] = ( userConfigLength >> 8	) & 0xFF;
+
 	int replyLen = sizeof( DMXUSBPROParamsType ) + userConfigLength;
 	unsigned char* replyBuffer = new unsigned char[replyLen];
 	

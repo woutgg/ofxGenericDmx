@@ -10,7 +10,7 @@ class DmxRawDevice : public DmxDevice {
 public:
 	DmxRawDevice();
 	
-	bool open( const char* description = 0, const char* serial = 0, int index = 0 );
+  	bool open( const char* description = 0, const char* serial = 0, int index = 0 );
 	
 	int writeDmx( const unsigned char* data, int length ) const;
 	DMX_DEVICE_TYPE getType() const;

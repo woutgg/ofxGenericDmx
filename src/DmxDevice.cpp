@@ -8,6 +8,8 @@
  * class' contents are not relevant.
  */
 #include "DmxDevice.h"
+#include "ofMain.h"
+
 
 /* NOTE: using a magic return value is not very elegant...oh well. */
 const int DmxDevice::RV_DEVICE_NOT_OPEN = FtdiDevice::RV_DEVICE_NOT_OPEN;
@@ -22,7 +24,20 @@ DmxDevice::~DmxDevice()
 	delete ftdiDevice_;
 }
 
+void DmxDevice::exit(){
+    unsigned char dmxData_[512];
+    for ( int i = 0; i <= 512; i++ ) dmxData_[i] = 0;
+    writeDmx( dmxData_, 512 );
+    close();
+}
 
+bool DmxDevice::connect(int index , unsigned int channels)
+{
+    bool opened = open();
+    setChannels(channels);
+    
+    return opened;
+}
 /*
  * Open a connected (USB-based) FTDI device with the given index.
  *
@@ -63,6 +78,9 @@ bool DmxDevice::isOpen() const
 	return ftdiDevice_ != 0 && ftdiDevice_->isOpen();
 }
 
+//std::string DmxDevice::getDeviceString(){
+//    return deviceString;
+//}
 
 /************************
  * forwarding functions *
@@ -88,3 +106,59 @@ const char* DmxDevice::getLastError() const
  */
 const struct FtdiDevice::usbInformation* DmxDevice::getUsbInformation() const
 { return ftdiDevice_->getUsbInformation(); }
+
+const std::string DmxDevice::getDeviceString() const
+{
+    std::string deviceString = ftdiDevice_->getUsbInformation()->manufacturer;
+    deviceString += " ";
+    deviceString += ftdiDevice_->getUsbInformation()->description;
+    deviceString += " ";
+    deviceString += ftdiDevice_->getUsbInformation()->serial;
+    
+    return deviceString;
+    
+}
+
+void DmxDevice::setChannels(unsigned int channels) {
+    levels.resize(ofClamp(channels, 24, 512));
+}
+
+void DmxDevice::setLevel(unsigned int channel, unsigned char level) {
+    if(badChannel(channel)) {
+        return;
+    }
+    levels[channel] = level;
+    needsUpdate = true;
+}
+unsigned char DmxDevice::getLevel(unsigned int channel) {
+    if(badChannel(channel)) {
+        return 0;
+    }
+    
+    return levels[channel];
+   
+}
+
+
+void DmxDevice::update(bool force){
+    if(needsUpdate || force) {
+        needsUpdate = false;
+//        unsigned char dmxData_[512];
+        unsigned char* dmxData_ = &levels[0];
+        
+        writeDmx( dmxData_, levels.size() );
+    }
+    
+}
+
+bool DmxDevice::badChannel(unsigned int channel) {
+    if(channel > levels.size()) {
+        ofLogError() << "Channel " + ofToString(channel) + " is out of bounds. Only " + ofToString(levels.size()) + " channels are available.";
+        return true;
+    }
+//    if(channel == 0) {
+//        ofLogError() << "Channel 0 does not exist. DMX channels start at 1.";
+//        return true;
+//    }
+    return false;
+}

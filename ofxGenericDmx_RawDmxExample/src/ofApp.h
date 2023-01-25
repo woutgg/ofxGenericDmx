@@ -6,7 +6,8 @@
 
 //NOTE: at least on one occasion, sending all 512 channels failed to work.
 //Experiments led to stable operation by sending only 494 channels.
-#define DMX_DATA_LENGTH 494
+//#define DMX_DATA_LENGTH 494
+#define DMX_DATA_LENGTH 512
 
 // 513 values would create a maximum-sized packet (including the start code)
 // This is enough data for a full frame DMX message (512 channels)
